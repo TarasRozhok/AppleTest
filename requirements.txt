@@ -1,0 +1,9 @@
+pytest
+pytest-testrail
+selenium
+testrail
+psycopg2
+allure-pytest
+pytest-xdist
+webdriver-manager
+eyes-selenium>=4.1.6
