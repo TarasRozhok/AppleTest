@@ -1,13 +1,9 @@
-from Application import Application
-import pytest
-
-@pytest.fixture
-def app(request):
-    fixture = Application()
-    request.addfinalizer(fixture.destroy)
-    return fixture
-
-def test_apple_siri_remote(app):
+def test_apple_tv_with_move_and_scrolls(app):
     app.open_home_page()
-    app.click_on_menu_item(menu_item="tv")
-    app.scroll_to_accessories_for_apple_tv_and_click_shop()
+    app.all_menu.click_on_main_menu_item("tv")
+    app.all_menu.click_on_secondary_menu_item("airplay")
+    assert 'AirPlay' in app.driver.find_element_by_css_selector(".page-overview").text
+    app.scroll.scroll_to_footer(".ac-gf-breadcrumbs-home-icon").location_once_scrolled_into_view
+    app.move.move_to_element_helper("mac")
+    app.move.move_to_element_helper("ipad")
+    app.move.move_to_element_helper("iphone")
